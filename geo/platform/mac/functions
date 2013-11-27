@@ -11,7 +11,7 @@ get_wifi_access_points() {
 	if [ -n "$wifi_info" ]; then
 
 		wifi_points=`$airport -s -x | egrep 'BSSID|>CHANNEL<|NOISE|SSID_STR|RSSI' --after-context=1 \
-		| egrep -v "AGE|array|WPA|80211" | tr '\n' ' ' | tr -d '\t' \
+		| head -374 | egrep -v "AGE|array|WPA|80211" | tr '\n' ' ' | tr -d '\t' \
 		| sed -e 's/<[^>]*>//g' \
 		-e 's/ -- /, /g' \
 		-e 'y/:/-/' \

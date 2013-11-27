@@ -19,6 +19,9 @@ get_current_location() {
 		local full_req="${url}?browser=true&sensor=true${query}"
 
 		current_location_json="$(getter ${full_req})"
+		if echo "$current_location_json" | grep -qi '<title>error'; then
+			current_location_json=""
+		fi
 	fi
 }
 
